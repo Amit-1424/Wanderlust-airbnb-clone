@@ -16,3 +16,21 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
+
+
+app.get("/",(req,res) => {
+    res.send("hello i am rooot !")
+});
+
+
+
+
+
+
+
+
+
+
+app.listen(port,() => {
+    console.log(`the server is listning at  http://localhost:${port}`);
+})
