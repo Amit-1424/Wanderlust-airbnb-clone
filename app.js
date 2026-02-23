@@ -17,6 +17,19 @@ app.use(express.static(path.join(__dirname,"/public")));
 var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+const mangoose = require("mongoose");
+const MONGO_URL = "mongodb://127.0.0.1:27017/test";
+async function main() {
+    await mongoose.connect(MONGO_URL);
+}
+main()
+    .then(() => {
+        console.log("connected to db");
+    })
+    .catch(() => {
+        console.log("some error occured");
+    })
+
 
 const Listing = require("./models/listing.js");
 
