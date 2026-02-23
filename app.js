@@ -18,6 +18,8 @@ var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 
+const Listing = require("./models/listing.js");
+
 app.get("/",(req,res) => {
     res.send("hello i am rooot !")
 });
