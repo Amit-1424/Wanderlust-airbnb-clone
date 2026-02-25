@@ -34,3 +34,97 @@
 .f-info-socials .f-info-links {
     font-size: 1.5rem;
 }
+/* ===== GLOBAL LAYOUT FIX ===== */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+main {
+    flex: 1;
+}
+
+/* ===== CARD SYSTEM ===== */
+
+.listing-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    height: 320px;              /* FIXED HEIGHT */
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.listing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Image wrapper fixed height */
+.image-wrapper {
+    height: 190px;              /* SAME IMAGE HEIGHT */
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Crop image properly */
+.listing-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          /* THIS CROPS IMAGE */
+}
+
+/* Card body fixed height */
+.card-body {
+    height: 130px;              /* remaining height */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ===== SHOW PAGE ===== */
+
+.listing-show-wrapper {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.show-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+    margin-top: auto;
+}
+
+/* ===== RESPONSIVE FIX ===== */
+
+@media (max-width: 768px) {
+
+    .listing-card {
+        height: 300px;
+    }
+
+    .image-wrapper {
+        height: 170px;
+    }
+
+    .show-img {
+        height: 250px;
+    }
+}
