@@ -3,12 +3,12 @@
     <h2 >All Listings </h2>
     
     <% for (let listing of allListings){ %>
-        <a href="/listings/<%= listing._id %>"><%= listing.title %></a>
+        <a href="/listings/<%= listing._id %>"><%= listing.title %></a>    
         <br>
     <% } %> 
 
-    <form method ="GET"  action="/listings/new">
+    <!-- <form method ="GET"  action="/listings/new">
         <button>create new Lisitng</button>
-    </form>
+    </form> -->
     
 </body>
