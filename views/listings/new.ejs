@@ -3,38 +3,46 @@
 <div class="container mt-4 form-container">
     <h3 class="mb-4">Create a New Listing</h3>
 
-    <form method="POST" action="/listings" class="needs-validation" novalidate>
+    <form method="POST" action="/listings" class="needs-validation" novalidate needs-validation>
 
         <div class="mb-3">
             <label class="form-label">Title</label>
             <input name="listing[title]" class="form-control" required />
+            <div class="valid-feedback">title looks good</div>
+            <div class="invalid-feedback">please enter the title</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Description</label>
             <textarea name="listing[description]" class="form-control" rows="3" required></textarea>
+            <div class="valid-feedback">description added</div>
+            <div class="invalid-feedback">please describe about the listing</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Image URL</label>
             <input name="listing[image][url]" class="form-control" required />
+            <div class="invalid-feedback">image is necessary</div>
         </div>
 
         <div class="row">
             <div class="mb-3 col-md-6">
                 <label class="form-label">Price</label>
                 <input name="listing[price]" type="number" class="form-control" required />
+                <div class="invalid-feedback">this field is required</div>
             </div>
 
             <div class="mb-3 col-md-6">
                 <label class="form-label">Country</label>
                 <input name="listing[country]" class="form-control" required />
+                <div class="invalid-feedback">this field is required</div>
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Location</label>
             <input name="listing[location]" class="form-control" required />
+            <div class="invalid-feedback">this field is required</div>
         </div>
 
         <button class="btn btn-dark w-100">Add Listing</button>
