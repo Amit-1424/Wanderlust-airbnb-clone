@@ -91,12 +91,14 @@ app.delete("/listings/:id",wrapAsync( async(req,res) => {
 
 
 
-
+app.use((req,res,next) => {
+    throw new expressError(404,"page not found")
+})
 
 
 app.use((err,req,res,next) => {
     let {statusCode = 500, message = "something went wrong"} = err;
-    res.status(statusCode).send(message); 
+    res.status(statusCode).render("listings/error.ejs", {err}); 
 });
 
 
