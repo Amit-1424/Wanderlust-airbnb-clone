@@ -36,6 +36,7 @@ const Listing = require("./models/listing.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const expressError = require("./utils/expressError.js");
 
+const {listingSchema} = require("./schema.js");
 
 
 
@@ -56,9 +57,10 @@ app.get("/listings/new", (req,res) => {
 });
 
 app.post("/listings",wrapAsync(  async (req, res) => {
-    if(!req.body.listing){
-        throw new expressError(400 ,"send some vbalid data")
-    }   // not use
+    let result = listingSchema.validate(req.body);
+    if(result.error){
+        throw new expressError(400,result.error.details[0].message);
+    }
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -76,6 +78,10 @@ app.get("/listings/:id/edit",wrapAsync(  async (req,res) => {
     res.render("listings/edit.ejs",{listing})
 }));
 app.put("/listings/:id", wrapAsync( async (req,res) => {
+    let result = listingSchema.validate(req.body);
+    if(result.error){
+        throw new expressError(400,result.error.details[0].message);
+    }
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id,req.body.listing);
     res.redirect(`/listings/${id}`);
