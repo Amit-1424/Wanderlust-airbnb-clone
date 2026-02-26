@@ -33,6 +33,8 @@ main()
 
 const Listing = require("./models/listing.js");
 
+const wrapAsync = require("./utils/wrapAsync.js")
+
 app.get("/",(req,res) => {
     res.send("hello i am rooot !")
 });
@@ -46,11 +48,11 @@ app.get("/listings", async (req,res) => {
 app.get("/listings/new", (req,res) => {
     res.render("listings/new.ejs");
 })
-app.post("/listings", async (req, res) => {
+app.post("/listings",wrapAsync(  async (req, res) => {
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
-});
+}));
 //show/ read
 app.get("/listings/:id", async (req,res) => {
     let { id } = req.params;
@@ -88,7 +90,9 @@ app.delete("/listings/:id",async(req,res) => {
 
 
 
-
+app.use((err,req,res,next) => {
+    res.send("something went wrong");
+})
 
 
 app.listen(port,() => {
