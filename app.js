@@ -38,7 +38,16 @@ const expressError = require("./utils/expressError.js");
 
 const {listingSchema} = require("./schema.js");
 
-
+const validateListing = (req,res,next) => {
+    let {error} = listingSchema.validate(req.body);
+    if(error){
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new expressError (400,errMsg);
+    }
+    else{
+        next();
+    }
+}
 
 
 app.get("/",(req,res) => {
@@ -56,11 +65,10 @@ app.get("/listings/new", (req,res) => {
     res.render("listings/new.ejs");
 });
 
-app.post("/listings",wrapAsync(  async (req, res) => {
-    let result = listingSchema.validate(req.body);
-    if(result.error){
-        throw new expressError(400,result.error.details[0].message);
-    }
+app.post(
+    "/listings",
+    validateListing,
+    wrapAsync(async (req, res) => {
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -77,11 +85,10 @@ app.get("/listings/:id/edit",wrapAsync(  async (req,res) => {
     let listing = await Listing.findById(id);
     res.render("listings/edit.ejs",{listing})
 }));
-app.put("/listings/:id", wrapAsync( async (req,res) => {
-    let result = listingSchema.validate(req.body);
-    if(result.error){
-        throw new expressError(400,result.error.details[0].message);
-    }
+app.put(
+    "/listings/:id",
+    validateListing,
+    wrapAsync( async (req,res) => {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id,req.body.listing);
     res.redirect(`/listings/${id}`);
