@@ -51,7 +51,7 @@ const validateListing = (req,res,next) => {
 
 
 app.get("/",(req,res) => {
-    res.send("hello i am rooot !")
+    res.redirect("/listings")
 });
 
 //index
