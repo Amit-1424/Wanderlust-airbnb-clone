@@ -49,6 +49,7 @@ const validateListing = (req,res,next) => {
     }
 }
 
+const Review = require("./models/review.js");
 
 app.get("/",(req,res) => {
     res.redirect("/listings")
