@@ -141,6 +141,10 @@ main {
   border-radius: 10px;
 }
 
+/* button review */
+.btn-review{
+    margin: 0.5rem ;
+}
 /* Responsive */
 @media (max-width: 768px) {
 

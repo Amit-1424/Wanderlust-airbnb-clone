@@ -119,6 +119,9 @@
           </p>
 
         </div>
+        <form method="post" action="/listings/<%= listing._id  %>/reviews/<%= r._id  %>?_method=DELETE"  >
+          <button class="btn btn-sm btn-dark btn-review" >Delete</button>
+        </form>
       </div>
 
     <% }) %>
