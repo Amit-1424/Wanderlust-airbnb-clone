@@ -34,6 +34,7 @@ const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js")
 
 const session = require("express-session");
+const flash = require("connect-flash");
 const sessionOptions = {
     secret : "mySuperSecretCode",
     resave: "false",
@@ -45,6 +46,11 @@ const sessionOptions = {
     }
 }
 app.use(session(sessionOptions));
+app.use(flash());
+app.use((req,res,next) => {
+    res.locals.sucess = req.flash("sucess");
+    next();
+})
 
 app.get("/",(req,res) => {
     res.redirect("/listings")

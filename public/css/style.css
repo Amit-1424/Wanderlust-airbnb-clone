@@ -145,6 +145,10 @@ main {
 .btn-review{
     margin: 0.5rem ;
 }
+
+
+
+
 /* Responsive */
 @media (max-width: 768px) {
 
@@ -178,4 +182,30 @@ footer {
     .show-img {
         height: 250px;
     }
+}
+
+
+/* button-flash */
+/* Make alert relative for animation positioning */
+.auto-dismiss {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Bottom progress bar */
+.auto-dismiss::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #198754; /* success green */
+  animation: shrink 2s linear forwards;
+}
+
+/* Countdown animation */
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
 }
