@@ -36,10 +36,20 @@ const Listing = require("./models/listing.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const expressError = require("./utils/expressError.js");
 
-const {listingSchema} = require("./schema.js");
+const {listingSchema, reviewSchema} = require("./schema.js");
 
 const validateListing = (req,res,next) => {
     let {error} = listingSchema.validate(req.body);
+    if(error){
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new expressError (400,errMsg);
+    }
+    else{
+        next();
+    }
+}
+const validateReview = (req,res,next) => {
+    let {error} = reviewSchema.validate(req.body);
     if(error){
         let errMsg = error.details.map((el) => el.message).join(",");
         throw new expressError (400,errMsg);
@@ -102,10 +112,10 @@ app.delete("/listings/:id",wrapAsync( async(req,res) => {
 }));
 
 ///reviews-post
-app.post("/listings/:id/reviews", async (req,res) => {
+app.post("/listings/:id/reviews",validateReview, wrapAsync(async (req,res) => {
     let id = req.params.id;
     let listing = await Listing.findById(id);
-    let newReview = await new Review(req.body.review);
+    let newReview = new Review(req.body.review);
 
     listing.review.push(newReview);
 
@@ -113,7 +123,7 @@ app.post("/listings/:id/reviews", async (req,res) => {
     await listing.save();
 
     res.redirect(`/listings/${id}`);
-})
+}));
 
 app.use((req,res,next) => {
     throw new expressError(404,"page not found")

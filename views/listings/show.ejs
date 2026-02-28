@@ -61,7 +61,7 @@
 
         <h5 class="mb-3">Add Review</h5>
 
-        <form method="POST" action="/listings/<%= listing._id %>/reviews">
+        <form method="POST" action="/listings/<%= listing._id %>/reviews" novalidate class="needs-validation">
 
           <!-- Rating -->
           <div class="mb-3">
@@ -91,7 +91,9 @@
               placeholder="Write your review..."
               required
             ></textarea>
+            <div class="invalid-feedback">please add some review before submitting</div>
           </div>
+          
 
           <button class="btn btn-dark w-100 rounded-pill">
             Submit Review
