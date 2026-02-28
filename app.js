@@ -101,7 +101,19 @@ app.delete("/listings/:id",wrapAsync( async(req,res) => {
     res.redirect("/listings")
 }));
 
+///reviews-post
+app.post("/listings/:id/reviews", async (req,res) => {
+    let id = req.params.id;
+    let listing = await Listing.findById(id);
+    let newReview = await new Review(req.body.review);
 
+    listing.review.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listings/${id}`);
+})
 
 app.use((req,res,next) => {
     throw new expressError(404,"page not found")
