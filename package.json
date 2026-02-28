@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Amit-1424/Wanderlust-airbnb-clone#readme",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
     "ejs": "^4.0.1",
     "ejs-mate": "^4.0.0",

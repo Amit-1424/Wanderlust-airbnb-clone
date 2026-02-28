@@ -33,6 +33,14 @@ main()
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js")
 
+const session = require("express-session");
+const sessionOptions = {
+    secret : "mySuperSecretCode",
+    resave: "false",
+    saveUninitialized: true
+}
+app.use(session(sessionOptions));
+
 app.get("/",(req,res) => {
     res.redirect("/listings")
 });
