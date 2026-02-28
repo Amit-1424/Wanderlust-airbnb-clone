@@ -92,18 +92,65 @@ main {
 
 /* ===== SHOW PAGE ===== */
 
-.listing-show-wrapper {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    max-width: 1000px;
-    margin: auto;
+/* ===============================
+   SHOW PAGE STYLING
+==================================*/
+
+.show-image-card {
+  border-radius: 18px;
+  overflow: hidden;
 }
 
 .show-img {
-    width: 100%;
-    height: 380px;
-    object-fit: cover;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+.show-details-card {
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+/* Review Sidebar */
+.review-card {
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+/* All Reviews Section */
+.all-reviews {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Single Review */
+.single-review {
+  border-radius: 12px;
+  background: #f8f9fa;
+  font-size: 0.9rem;
+}
+
+/* Scrollbar styling */
+.all-reviews::-webkit-scrollbar {
+  width: 6px;
+}
+
+.all-reviews::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .show-img {
+    height: 300px;
+  }
+
+  .all-reviews {
+    max-height: none;
+  }
 }
 
 /* ===== FOOTER ===== */
