@@ -33,6 +33,10 @@ main()
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js")
 
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js")
+//
 const session = require("express-session");
 const flash = require("connect-flash");
 const sessionOptions = {
@@ -47,12 +51,23 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions));
 app.use(flash());
+
+//passport middlewares (session implementaion is necesary for it)
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+
+
 app.use((req,res,next) => {
     res.locals.sucess = req.flash("sucess");
     res.locals.error = req.flash("error");
     next();
 })
-
+//routes
 app.get("/",(req,res) => {
     res.redirect("/listings")
 });
