@@ -1,0 +1,12 @@
+web development
+backend
+basics till phase 2 kahi se v padhlo
+-> middleware and errors chatgpt mai Airbnb
+-> middleware express docs
+-> errors chatgpt secondary
+
+form validation
+-> clint side
+	-> never use wrapAsync in non-async funtions
+
+_> reviews delete oart editing se chatgpt mai padho bht imp hai
