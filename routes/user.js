@@ -42,7 +42,7 @@ router.post("/login",
         let {username} = req.body;
         req.flash("sucess",` welcome Back ${username} `)
         let redirectUrl =  res.locals.redirectUrl || "/listings";
-        res.redirect(res.locals.redirectUrl);
+        res.redirect(redirectUrl);
 }));
 
 router.get("/logout" , (req,res,next) =>{
