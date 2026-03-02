@@ -39,7 +39,6 @@ router.post("/login",
         failureFlash:true
     }),    
     wrapAsync( async (req,res) => {
-        console.log("hello")
         let {username} = req.body;
         req.flash("sucess",` welcome Back ${username} `)
         let redirectUrl =  res.locals.redirectUrl || "/listings";
