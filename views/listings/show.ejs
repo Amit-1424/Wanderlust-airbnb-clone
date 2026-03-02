@@ -30,6 +30,7 @@
 
         <p><%= listing.description %></p>
 
+        <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
         <div class="d-flex gap-3 mt-3">
           <a href="/listings/<%= listing._id %>/edit"
             class="btn btn-outline-dark rounded-pill px-4">
@@ -43,6 +44,8 @@
             </button>
           </form>
         </div>
+        <% } %>
+
       </div>
 
       <!-- FUTURE MAP SECTION -->
