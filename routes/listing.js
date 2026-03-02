@@ -37,7 +37,6 @@ router.get("/new",
 
 router.post(
     "/",
-    
     isLoggedIn,
     validateListing,
     wrapAsync(async (req, res) => {
