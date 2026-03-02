@@ -30,8 +30,9 @@ main()
         console.log("some error occured");
     })
 
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js")
+const listingsRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/review.js")
+const userRouter = require("./routes/user.js")
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -72,8 +73,9 @@ app.get("/",(req,res) => {
     res.redirect("/listings")
 });
 
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews)
+app.use("/listings",listingsRouter);
+app.use("/listings/:id/reviews",reviewsRouter)
+app.use("/",userRouter);
 
 
 
