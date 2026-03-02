@@ -6,12 +6,16 @@ const reviewSchema = new mongoose.Schema({
     rating : {
         type: Number,
         min: 1,
-        max :5
+        max :5 
     },
     created_at : {
         type: Date,
         default: Date.now() 
     },
+    author :{
+        type: Schema.Types.ObjectId,
+        ref:"User"
+    }
 });
 
 let Review = new mongoose.model("Review",reviewSchema);
