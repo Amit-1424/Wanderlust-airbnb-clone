@@ -8,7 +8,7 @@ const {listingSchema} = require("../schema.js");
 const Listing = require("../models/listing.js");
 
 
-const {isLoggedIn} = require("../middleware.js");
+const {isLoggedIn,isOwner} = require("../middleware.js");
 
 
 const validateListing = (req,res,next) => {
@@ -61,6 +61,7 @@ router.get("/:id", wrapAsync( async (req,res) => {
 //update
 router.get("/:id/edit",
     isLoggedIn,
+    isOwner,    
     wrapAsync(  async (req,res) => {
     let { id } = req.params;
     let listing = await Listing.findById(id);
@@ -75,6 +76,7 @@ router.get("/:id/edit",
 router.put(
     "/:id",
     isLoggedIn,
+    isOwner,
     validateListing,
     wrapAsync( async (req,res) => {
     let { id } = req.params;
@@ -85,6 +87,7 @@ router.put(
 //delete
 router.delete("/:id",
     isLoggedIn,
+    isOwner,
     wrapAsync( async(req,res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
