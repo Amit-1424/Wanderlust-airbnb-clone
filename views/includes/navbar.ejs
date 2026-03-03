@@ -1,24 +1,48 @@
-<nav class="navbar navbar-expand-sm bg-body-dark sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><i class="fa-solid fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
+<nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm sticky-top py-3">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/listings">
+      <i class="fa-solid fa-compass text-danger me-2 fs-4"></i>
+      <span class="fs-5">Wanderlust</span>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/listings">All listings</a>
-        <a class="nav-link" href="/listings/new">create new listings</a>
+
+      <!-- Left Links -->
+      <div class="navbar-nav ms-3  ">
+        <a class="nav-link px-3" href="/">Home</a>
+        <a class="nav-link px-3" href="/listings">All Listings</a>
+        <a class="nav-link px-3" href="/listings/new">Create Listing</a>
       </div>
-      <div class="navbar-nav ms-auto">
-         <% if(!currUser){ %>
-          <a class="nav-link" aria-current="page" href="/signup">Signup</a>
-          <a class="nav-link" href="/login">Login</a>
-        <%  } %>
-        <% if(currUser){ %>
-          <a class="nav-link" href="/logout">Logout</a>
+
+      
+
+      <!-- Right Auth Section -->
+      <div class="ms-auto d-flex align-items-center gap-2">
+        
+        <% if(!currUser){ %>
+          <a href="/signup" class="btn btn-outline-dark rounded-pill px-3">
+            Signup
+          </a>
+          <a href="/login" class="btn btn-dark rounded-pill px-3">
+            Login
+          </a>
         <% } %>
+
+        <% if(currUser){ %>
+          <a href="/logout" class="btn btn-danger rounded-pill px-3">
+            Logout
+          </a>
+        <% } %>
+
       </div>
+
     </div>
   </div>
 </nav>

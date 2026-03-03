@@ -227,6 +227,44 @@ footer {
 
 
 
+.filters-wrapper {
+    display: flex;
+    justify-content: center;   /* CENTER */
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #777;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.filter-item i {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.filter-item:hover {
+    color: black;
+    transform: scale(1.05);
+}
+
+.filter-active {
+    color: black;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+    padding-bottom: 6px;
+}
+
+
 #image-edit{
   height: 200px;
   object-fit: contain;
