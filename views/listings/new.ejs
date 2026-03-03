@@ -5,11 +5,27 @@
 
     <form method="POST" action="/listings" class="needs-validation" novalidate needs-validation enctype="multipart/form-data">
 
-        <div class="mb-3">
-            <label class="form-label">Title</label>
-            <input name="listing[title]" class="form-control" required />
-            <div class="valid-feedback">title looks good</div>
-            <div class="invalid-feedback">please enter the title</div>
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Title</label>
+                    <input name="listing[title]" class="form-control" required />
+                    <div class="valid-feedback">Title looks good</div>
+                    <div class="invalid-feedback">Please enter the title</div>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Category</label>
+                    <select name="listing[category]" class="form-select" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="Beach">Beach</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Cities">Cities</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Countryside">Countryside</option>
+                        <option value="Unique">Unique</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a category</div>
+                </div>
         </div>
 
         <div class="mb-3">
