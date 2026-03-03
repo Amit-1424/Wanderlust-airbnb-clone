@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV != " production"){
+    require("dotenv").config();
+}  
+
+
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -16,6 +21,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
+
 
 const mongoose = require("mongoose");
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";

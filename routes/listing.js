@@ -14,6 +14,10 @@ const {
     destroyListing
 } = require("../controllers/allListings.js");
 
+const multer = require("multer")
+const {storage} = require("../cloudConfig.js")
+const upload = multer({ storage })
+
 
 // INDEX + CREATE
 router.route("/")
@@ -21,9 +25,10 @@ router.route("/")
     .post(
         isLoggedIn,
         validateListing,
+        upload.single('listing[image][url]'),
         wrapAsync(createNewListing)
     );
-
+    
 
 // NEW FORM
 router.get("/new", isLoggedIn, getNewForm);
@@ -35,7 +40,9 @@ router.route("/:id")
     .put(
         isLoggedIn,
         isOwner,
+        upload.single('listing[image][url]'),
         validateListing,
+        
         wrapAsync(updateListing)
     )
     .delete(
@@ -49,6 +56,7 @@ router.route("/:id")
 router.get("/:id/edit",
     isLoggedIn,
     isOwner,
+    
     wrapAsync(renderEditForm)
 );
 

@@ -220,7 +220,17 @@ footer {
   background-color: #0dcaf0;
 }
 
+
+
+#image-edit{
+  height: 200px;
+  object-fit: contain;
+}
+
 @keyframes shrink {
   from { width: 100%; }
   to { width: 0%; }
 }
+
+
+

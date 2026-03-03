@@ -10,3 +10,15 @@ form validation
 	-> never use wrapAsync in non-async funtions
 
 _> reviews delete oart editing se chatgpt mai padho bht imp hai
+
+image uplaod
+	-> backend cant process files
+	-> mongo has a data limit big sizes images cant be uploded
+
+	soln-
+			-> form se upload pic -> pic will go to thirdpart datbase that database will provide a link and that link we will save in out listing
+			-> so no need to chamge the listing schema as it will recive the link
+				-> s1- > manupiate form 
+					-> enctype = multipart formdata
+					-> to handle this epres cant ,express can only do url encoded data
+					-> so we need multer

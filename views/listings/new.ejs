@@ -3,7 +3,7 @@
 <div class="container mt-4 form-container">
     <h3 class="mb-4">Create a New Listing</h3>
 
-    <form method="POST" action="/listings" class="needs-validation" novalidate needs-validation>
+
 
         <div class="mb-3">
             <label class="form-label">Title</label>
@@ -18,10 +18,10 @@
             <div class="valid-feedback">description added</div>
             <div class="invalid-feedback">please describe about the listing</div>
         </div>
-
+        
         <div class="mb-3">
-            <label class="form-label">Image URL</label>
-            <input name="listing[image][url]" class="form-control" required />
+            <label class="form-label">Image</label>
+            <input type="file" name="listing[image][url]" class="form-control" required />
             <div class="invalid-feedback">image is necessary</div>
         </div>
 
