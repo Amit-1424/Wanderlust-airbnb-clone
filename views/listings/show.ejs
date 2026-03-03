@@ -147,7 +147,7 @@
             <%= r.comment %>
           </p>
         </div>
-        <% if(currUser._id.equals(r.author._id)){ %>
+        <% if(currUser && currUser._id.equals(r.author._id)){ %>
         <form method="post" action="/listings/<%= listing._id  %>/reviews/<%= r._id  %>?_method=DELETE"  >
           <button class="btn btn-sm btn-dark btn-review" >Delete</button>
         </form>

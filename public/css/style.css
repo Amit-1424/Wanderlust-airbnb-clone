@@ -53,13 +53,17 @@ main {
 
 /* ===== CARD SYSTEM ===== */
 
+/* ===== CARD SYSTEM ===== */
+
 .listing-card {
     border: none;
     border-radius: 18px;
     overflow: hidden;
-    height: 320px;              /* FIXED HEIGHT */
+    height: 320px;              /* Fixed card height */
     transition: all 0.3s ease;
     background: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .listing-card:hover {
@@ -67,23 +71,24 @@ main {
     box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
-/* Image wrapper fixed height */
+/* Image wrapper */
 .image-wrapper {
-    height: 190px;              /* SAME IMAGE HEIGHT */
+    height: 300px;              /* SAME IMAGE HEIGHT FOR ALL */
     width: 100%;
     overflow: hidden;
 }
 
-/* Crop image properly */
+/* Force image to fill wrapper */
 .listing-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;          /* THIS CROPS IMAGE */
+    object-fit: cover;          /* Crop image nicely */
+    display: block;
 }
 
-/* Card body fixed height */
+/* Card body */
 .card-body {
-    height: 130px;              /* remaining height */
+    flex: 1;
     padding: 15px;
     display: flex;
     flex-direction: column;
