@@ -2,43 +2,54 @@ const express = require("express");
 const router = express.Router();
 
 const wrapAsync = require("../utils/wrapAsync.js");
-const expressError = require("../utils/expressError.js");
-const Listing = require("../models/listing.js");
-const {isLoggedIn,isOwner,validateListing} = require("../middleware.js");
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
-const {allListings,getNewForm,createNewListing,showListing,renderEditForm,updateListing,destroyListing} = require("../controllers/allListings.js")
+const {
+    allListings,
+    getNewForm,
+    createNewListing,
+    showListing,
+    renderEditForm,
+    updateListing,
+    destroyListing
+} = require("../controllers/allListings.js");
 
-//index
-router.get("/",wrapAsync( allListings ));
 
-//new / create
-router.get("/new",isLoggedIn,getNewForm);
+// INDEX + CREATE
+router.route("/")
+    .get(wrapAsync(allListings))
+    .post(
+        isLoggedIn,
+        validateListing,
+        wrapAsync(createNewListing)
+    );
 
-router.post(
-    "/",
-    isLoggedIn,
-    validateListing,
-    wrapAsync(createNewListing));
 
-//show/ read
-router.get("/:id", wrapAsync(showListing ));
+// NEW FORM
+router.get("/new", isLoggedIn, getNewForm);
 
-//update
+
+// SHOW
+router.route("/:id")
+    .get(wrapAsync(showListing))
+    .put(
+        isLoggedIn,
+        isOwner,
+        validateListing,
+        wrapAsync(updateListing)
+    )
+    .delete(
+        isLoggedIn,
+        isOwner,
+        wrapAsync(destroyListing)
+    );
+
+
+// EDIT FORM
 router.get("/:id/edit",
     isLoggedIn,
-    isOwner,    
-    wrapAsync(renderEditForm));
-
-router.put(
-    "/:id",
-    isLoggedIn,
     isOwner,
-    validateListing,
-    wrapAsync( updateListing));
-//delete
-router.delete("/:id",
-    isLoggedIn,
-    isOwner,
-    wrapAsync( destroyListing));
+    wrapAsync(renderEditForm)
+);
 
 module.exports = router;

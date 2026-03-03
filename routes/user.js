@@ -15,11 +15,10 @@ const {
 
 
 router.get("/signup", renderSignupForm);
-
 router.post("/signup", wrapAsync(signup));
 
-router.get("/login", renderLoginForm);
 
+router.get("/login", renderLoginForm);
 router.post(
     "/login",
     saveRedirectUrl,
@@ -29,6 +28,7 @@ router.post(
     }),
     wrapAsync(login)
 );
+
 
 router.get("/logout", logout);
 
