@@ -15,7 +15,9 @@ module.exports.allListings = async (req, res) => {
 
     res.render("listings/index", { 
         allListings,
-        activeCategory: category   // 👈 PASS THIS
+        activeCategory: category,   // 👈 PASS THIS
+        showFilters: true,   // 👈 Show filters normally
+        isMyListings: false
     });
 }
 module.exports.getNewForm = (req,res) => {
@@ -111,11 +113,10 @@ module.exports.destroyListing = async(req,res) => {
 
 module.exports.myListings = async (req, res) => {
     const myListings = await Listing.find({ owner: req.user._id });
-
-    
-    
     res.render("listings/index", {
         allListings: myListings,
-        activeCategory: null
+        activeCategory: null,
+        showFilters: false,   // Important
+        isMyListings: true   // 👈 important
     });
 }

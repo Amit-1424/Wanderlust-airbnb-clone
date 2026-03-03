@@ -2,7 +2,7 @@
 
 
 <div class="container mt-4">
-
+    <% if(showFilters) { %>
     <div class="filters-wrapper mb-4">
 
         <a href="/listings"
@@ -48,6 +48,39 @@
         </a>
 
     </div>
+    <% } %>
+
+
+
+    <% if(allListings.length === 0){ %>
+
+    <div class="text-center py-5">
+        <div class="mb-4">
+            <i class="fa-solid fa-box-open" style="font-size: 70px; color: #ddd;"></i>
+        </div>
+
+        <h4 class="fw-bold mb-3">
+            <%= isMyListings 
+                ? "You currently have no listings"
+                : "No listings found" %>
+        </h4>
+
+        <p class="text-muted mb-4">
+            <%= isMyListings 
+                ? "Start hosting and share your space with the world."
+                : "Try adjusting your filters." %>
+        </p>
+
+        <% if(isMyListings){ %>
+            <a href="/listings/new" class="btn btn-dark rounded-pill px-4">
+                + Add Your First Listing
+            </a>
+        <% } %>
+    </div>
+
+<% } else { %>
+
+
 
     <!-- LISTINGS GRID -->
     <div class="row g-4">
@@ -83,5 +116,9 @@
             </div>
         <% } %>
     </div>
+
+
+<% } %>
+
 
 </div>
