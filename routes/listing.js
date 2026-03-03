@@ -11,7 +11,8 @@ const {
     showListing,
     renderEditForm,
     updateListing,
-    destroyListing
+    destroyListing,
+    myListings
 } = require("../controllers/allListings.js");
 
 const multer = require("multer")
@@ -28,8 +29,12 @@ router.route("/")
         upload.single('listing[image][url]'),
         wrapAsync(createNewListing)
     );
-    
 
+
+router.get("/my", 
+    isLoggedIn, 
+    wrapAsync(myListings)
+);
 // NEW FORM
 router.get("/new", isLoggedIn, getNewForm);
 

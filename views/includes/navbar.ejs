@@ -16,16 +16,21 @@
 
       <!-- Left Links -->
       <div class="navbar-nav ms-3  ">
-        <a class="nav-link px-3" href="/">Home</a>
-        <a class="nav-link px-3" href="/listings">All Listings</a>
-        <a class="nav-link px-3" href="/listings/new">Create Listing</a>
+        <a class="nav-link px-3" href="/"><b>Home </b></a>
+        <a class="nav-link px-3" href="/listings/new"><b>Create your Listing</b></a>
       </div>
 
       
 
       <!-- Right Auth Section -->
       <div class="ms-auto d-flex align-items-center gap-2">
-        
+
+        <% if(currUser){ %>
+          <a class="nav-link px-3 fw-semibold" href="/listings/my">
+            Your Listings
+          </a>
+        <% } %>
+
         <% if(!currUser){ %>
           <a href="/signup" class="btn btn-outline-dark rounded-pill px-3">
             Signup
