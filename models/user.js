@@ -12,7 +12,7 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-   googleId: {
+  googleId: {
     type: String,
     unique: true,
     sparse: true
@@ -22,6 +22,19 @@ const userSchema = new Schema({
     type: String,
     enum: ["local", "google"],
     default: "local"
+  },
+
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+
+  verificationToken: {
+    type: String
+  },
+
+  tokenExpiry: {
+    type: Date
   }
 });
 
@@ -31,4 +44,4 @@ userSchema.plugin(passportLocalMongoose, {
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;  
+module.exports = User;
