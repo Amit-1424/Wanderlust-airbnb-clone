@@ -15,14 +15,14 @@ passport.use(
 
         const email = profile.emails[0].value;
 
-        // 1️⃣ check if user already exists with googleId
+        //google login id exits user
         let user = await User.findOne({ googleId: profile.id });
 
         if (user) {
           return done(null, user);
         }
 
-        // 2️⃣ check if user exists with same email
+            // if not login with google check if same email exists
         user = await User.findOne({ email });
 
         if (user) {
@@ -32,7 +32,7 @@ passport.use(
           return done(null, user);
         }
 
-        // 3️⃣ create new user
+        // if not than cretae user
         const newUser = new User({
           username: profile.displayName,
           email: email,
