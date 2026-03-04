@@ -25,6 +25,6 @@
       setTimeout(() => {
         const bsAlert = new bootstrap.Alert(alert);
         bsAlert.close();
-      }, 2000); // 3 seconds
+      }, 3000); // 3 seconds
     });
   });

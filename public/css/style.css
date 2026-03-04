@@ -203,7 +203,7 @@ footer {
   bottom: 0;
   height: 4px;
   width: 100%;
-  animation: shrink 2s linear forwards;
+  animation: shrink 3s linear forwards;
 }
 
 /* Success Alert Border */

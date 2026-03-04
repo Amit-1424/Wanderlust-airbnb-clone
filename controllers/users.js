@@ -57,11 +57,14 @@ module.exports.signup = async (req, res, next) => {
         req.flash("sucess", "Verification email sent. Please check your email.");
         res.redirect("/login");
 
-    } catch (e) {
-        console.log(e);
-        req.flash("error", e.message);
+    } catch (err) {
+        if (err.code === 11000) {
+            req.flash("error", "Username already taken");
+        } else {
+            req.flash("error", err.message);
+        }
         res.redirect("/signup");
-    }
+        }
 };
 
 
