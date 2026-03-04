@@ -3,8 +3,7 @@ const router = express.Router();
 
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
-const { saveRedirectUrl } = require("../middleware.js");
-
+const { saveRedirectUrl,redirectIfLoggedIn } = require("../middleware.js");
 const {
     renderSignupForm,
     signup,
@@ -18,9 +17,10 @@ router.get("/signup", renderSignupForm);
 router.post("/signup", wrapAsync(signup));
 
 
-router.get("/login", renderLoginForm);
+router.get("/login",redirectIfLoggedIn,renderLoginForm);
 router.post(
     "/login",
+    redirectIfLoggedIn,
     saveRedirectUrl,
     passport.authenticate("local", {
         failureRedirect: "/login",

@@ -8,6 +8,8 @@ const app = express();
 const port = 3000;
 const path = require("path");
 
+const expressError = require("./utils/expressError.js")
+
 const ejsMate = require("ejs-mate")
 app.engine("ejs",ejsMate)
 app.set("view engine", "ejs");  
@@ -36,10 +38,6 @@ main()
         console.log("some error occured");
     })
 
-const listingsRouter = require("./routes/listing.js");
-const reviewsRouter = require("./routes/review.js")
-const userRouter = require("./routes/user.js")
-
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js")
@@ -58,7 +56,6 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions));
 app.use(flash());
-
 //passport middlewares (session implementaion is necesary for it)
 app.use(passport.initialize());
 app.use(passport.session());
@@ -72,6 +69,15 @@ passport.use(
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+
+require("./config/passportGoogle");
+
+
+
+const listingsRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/review.js")
+const userRouter = require("./routes/user.js")
+const authRoutes = require("./routes/auth");
 
 
 app.use((req,res,next) => {
@@ -88,6 +94,7 @@ app.get("/",(req,res) => {
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter)
 app.use("/",userRouter);
+app.use("/auth",authRoutes)
 
 
 

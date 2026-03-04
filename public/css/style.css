@@ -265,6 +265,43 @@ footer {
 }
 
 
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 50%;
+    padding: 10px 14px;
+    margin-left: 12rem;
+
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 500;
+    color: #3c4043;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.google-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.google-btn:hover {
+    background-color: lightgrey;
+    border-color: #c6c6c6;
+}
+
+.google-btn:active {
+    background-color: #f1f3f4;
+}
+
 #image-edit{
   height: 200px;
   object-fit: contain;

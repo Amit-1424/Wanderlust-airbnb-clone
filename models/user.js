@@ -11,6 +11,17 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true
+  },
+   googleId: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+
+  authType: {
+    type: String,
+    enum: ["local", "google"],
+    default: "local"
   }
 });
 
