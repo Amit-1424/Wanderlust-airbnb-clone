@@ -13,6 +13,10 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 
+// mongo session store
+const MongoStore = require("connect-mongo").default;
+
+
 // DB
 require("./config/db");
 
@@ -37,9 +41,23 @@ app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname,"public")));
 
+
+
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    crypto:{
+        secret: process.env.SESSION_SECRET
+    },
+    touchAfter: 24*3600,
+  })
+
+store.on("error", () => {
+    console.log("error in mongo session");
+});
 //session
 const sessionOptions = {
-    secret: process.env.SESSION_SECRET || "mysupersecret",
+    store : store,
+    secret: process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
