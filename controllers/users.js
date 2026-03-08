@@ -34,7 +34,15 @@ module.exports.signup = async (req, res, next) => {
 
             await existingUser.save();
 
-            await sendVerificationEmail(existingUser.email, token);
+            console.log("before sending email");
+
+            try {
+                await sendVerificationEmail(email, token);
+            } catch (err) {
+                console.error("Email error:", err);
+            }
+
+            console.log("after sending email");
 
             req.flash("sucess", "Verification email resent. Please check your inbox.");
             return res.redirect("/login");
