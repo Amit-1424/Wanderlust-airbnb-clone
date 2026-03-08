@@ -10,10 +10,10 @@ const transporter = nodemailer.createTransport({
 
 async function sendVerificationEmail(email, token) {
 
-    const verifyUrl = `http://localhost:3000/verify/${token}`;
+    const verifyUrl = `https://wanderlust-tqzm.onrender.com/verify/${token}`;
 
     await transporter.sendMail({
-        from: '"Wanderlust" <YOUR_GMAIL@gmail.com>',
+        from: `"Wanderlust" <${process.env.EMAIL_ID}>`,
         to: email,
         subject: "Verify your email",
         html: `
